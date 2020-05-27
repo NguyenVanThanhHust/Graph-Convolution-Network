@@ -18,7 +18,7 @@ def load_data(path="../../data/Cora/", dataset="cora"):
 	print("Loading {} dataset...".format(dataset))
 	idx_features_labels = np.genfromtxt("{}{}.content".format(path, dataset),
                                         dtype=np.dtype(str))
-    features = sp.csr_matrix(idx_features_labels[:, 1:-1], dtype=np.float32)
+	features = sp.csr_matrix(idx_features_labels[:, 1:-1], dtype=np.float32)
     labels = encode_onehot(idx_features_labels[:, -1])
 	
 	# build graph
@@ -60,14 +60,6 @@ def normalize(mx):
     r_mat_inv = sp.diags(r_inv)
     mx = r_mat_inv.dot(mx)
     return mx
-
-
-def accuracy(output, labels):
-    preds = output.max(1)[1].type_as(labels)
-    correct = preds.eq(labels).double()
-    correct = correct.sum()
-    return correct / len(labels)
-
 
 def sparse_mx_to_torch_sparse_tensor(sparse_mx):
     """Convert a scipy sparse matrix to a torch sparse tensor."""
