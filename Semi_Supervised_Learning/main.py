@@ -41,9 +41,9 @@ adj, features, labels, idx_train, idx_val, idx_test = load_data()
 
 # define model and optimizer
 model = GCN(num_feat=features.shape[1], 
-			num_hidden=args.hidden, 
-			num_class=labels.max().item() + 1, 
-			dropout=args.dropout)
+            num_hidden=args.hidden, 
+            num_class=labels.max().item() + 1, 
+            dropout=args.dropout)
 
 optimizer = optim.Adam(model.parameters(),
                        lr=args.lr, weight_decay=args.weight_decay)
@@ -92,13 +92,13 @@ def test():
           "accuracy= {:.4f}".format(acc_test.item()))
 
 if __name__ == "__main__":
-	# Train model
-	t_total = time.time()
-	for epoch in range(args.epochs):
-		train(epoch)
-	print("Optimization Finished!")
-	print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+    # Train model
+    t_total = time.time()
+    for epoch in range(args.epochs):
+        train(epoch)
+    print("Optimization Finished!")
+    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
-	# Testing
-	test()
+    # Testing
+    test()
 
