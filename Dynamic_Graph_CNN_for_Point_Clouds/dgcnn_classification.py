@@ -8,8 +8,14 @@ import torch_geometric.transforms as T
 from torch_geometric.data import DataLoader
 from torch_geometric.nn import DynamicEdgeConv, global_max_pool
 
-from pointnet2_classification import MLP
+path = osp.join(osp.dirname(osp.realpath(__file__)), '../..', 'data/ModelNet10')
 
-path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'data/ModelNet10')
-if osp.isdir(path):
-    print("ok")
+def MLP(channels, batch_norm=True):
+    net = layers[]
+    for i in range(1, len(channels):
+        net.append(Linear(channels[i-1], channels[i]))
+        net.append(ReLU())
+        net.append(BN(channels[i]))
+    return Seq(*net)
+
+
