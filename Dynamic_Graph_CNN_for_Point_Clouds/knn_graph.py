@@ -28,12 +28,12 @@ def knn(x: torch.Tensor, y: torch.Tensor, k: int,
             batch_size = int(batch_x.max()) +1
             deg = x.new_zeros(batch_size, dtype = torch.long)
           
-            deg.scatter_add_(0, batch_x, troch.ones_like(batch_x))
+            deg.scatter_add_(0, batch_x, torch.ones_like(batch_x))
          
             
             ptr_x = deg.new_zeros(batch_size+1)
         
-            torch.cumsum(deg, out=ptr_x[1:])
+            torch.cumsum(deg, 0, out=ptr_x[1:])
         else:
             ptr_x = torch.tensor([0, x.size(0)], device=x.device)
 
@@ -131,5 +131,5 @@ def _test_knn():
     assign_index = knn(x, y, 2, batch_x, batch_y)
     print(assign_index)
 
-_test_knn()
+# _test_knn()
 

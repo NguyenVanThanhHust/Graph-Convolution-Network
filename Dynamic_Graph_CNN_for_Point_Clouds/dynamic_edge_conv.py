@@ -4,17 +4,19 @@ import os.path as osp
 import torch
 import torch.nn.functional as F
 from torch.nn import Sequential as Seq, Dropout, Linear as Lin
+from torch.nn import Sequential as Seq, Linear as Lin, ReLU, BatchNorm1d as BN
 from torch_geometric.datasets import ModelNet
 import torch_geometric.transforms as T
 from torch_geometric.nn import global_max_pool
+from torch_geometric.nn.conv import MessagePassing
 
 from knn_graph import knn_graph
 path = osp.join(osp.dirname(osp.realpath(__file__)), '../..', 'data/ModelNet10')
 
 def MLP(channels, batch_norm=True):
-    net = layers[]
-    for i in range(1, len(channels):
-        net.append(Linear(channels[i-1], channels[i]))
+    net = []
+    for i in range(1, len(channels)):
+        net.append(Lin(channels[i-1], channels[i]))
         net.append(ReLU())
         net.append(BN(channels[i]))
     return Seq(*net)
@@ -65,4 +67,9 @@ class DynamicEdgeConv(EdgeConv):
     
     def forward(self, x, batch=None):
         edge_index= knn_graph(x, self.k, batch, loop=False, flow=self.flow)
-        
+        print("edge index: ", edge_index)
+        return super(DynamicEdgeConv, self).forward(x, edge_index)
+
+    def __repr__(self):
+        return '{}(nn={}, k={})'.format(self.__class__.__name__, self.nn,
+                                        self.k)        
