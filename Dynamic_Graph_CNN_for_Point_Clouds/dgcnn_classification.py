@@ -6,8 +6,8 @@ from torch.nn import Sequential as Seq, Dropout, Linear as Lin
 from torch_geometric.datasets import ModelNet
 import torch_geometric.transforms as T
 from torch_geometric.data import DataLoader
-from torch_geometric.nn import DynamicEdgeConv, global_max_pool
-
+from torch_geometric.nn import  global_max_pool
+from dynamic_edge_conv import MLP, DynamicEdgeConv
 path = osp.join(osp.dirname(osp.realpath(__file__)), '../..', 'data/ModelNet10')
 
 def MLP(channels, batch_norm=True):
