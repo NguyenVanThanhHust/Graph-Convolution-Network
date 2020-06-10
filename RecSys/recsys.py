@@ -199,7 +199,9 @@ model = Net().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.005)
 crit = torch.nn.BCELoss()
 train_loader = DataLoader(train_dataset, batch_size=batch_size)
-for epoch in range(num_epochs):
+
+# for epoch in range(num_epochs):
+for epoch in range(1):
     train()
 
 

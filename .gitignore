@@ -8,6 +8,8 @@ RecSys/nohup.out
 # C extensions
 *.so
 
+# data
+/data
 # Distribution / packaging
 .Python
 build/
